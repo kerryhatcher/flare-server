@@ -11,10 +11,13 @@ var User = require('./model/user.model');
 var Message = require('./model/message.model');
 var List = require('./model/list.model');
 
-console.log(process.env.database);
+
+console.log(process.env);
+
+console.log(process.env.DATABASE);
 
 
-var db = mongoose.connect('mongodb://' + process.env.database.MongoDB_mongo-cluster_1 + ',' + process.env.database.MongoDB_mongo-cluster_2 + ',' + process.env.database.MongoDB_mongo-cluster_3 + '/flare?replicaSet=rs0');
+var db = mongoose.connect('mongodb://' + process.env.DATABASE.MongoDB_mongo-cluster_1 + ',' + process.env.DATABASE.MongoDB_mongo-cluster_2 + ',' + process.env.DATABASE.MongoDB_mongo-cluster_3 + '/flare?replicaSet=rs0');
 
 
 
