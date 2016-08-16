@@ -13,7 +13,7 @@ var List = require('./model/list.model');
 
 console.log(process.env);
 
-var db = mongoose.connect('mongodb://' + process.env.DB_PORT_27017_TCP_ADDR + '/socialAggregation');
+var db = mongoose.connect('mongodb://' + process.env.database + '/socialAggregation');
 
 
 
