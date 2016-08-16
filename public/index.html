@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+   <head>
+     <meta charset="UTF-8">
+     <base href='/'></base>
+     <title>Webpack App</title>
+   </head>
+   <body>
+     <nav class="navbar navbar-default navbar-pf" role="navigation">
+       <ul class="nav navbar-nav navbar-primary" hawtio-main-nav></ul>
+       <ul id="right-nav" class="nav navbar-nav navbar-right">
+          <a onclick="openlogin()">login</a>
+          </ul>
+     </nav>
+     <div class="container-fluid">
+           <div class="row">
+             <div class="col-md-1 sidebar">
+               <ul class="nav nav-sidebar" hawtio-sub-tabs></ul>
+             </div>
+             <div id="main"  class="col-md-11 main ng-cloak" ng-controller="HawtioNav.ViewController">
+                <div ng-include src="viewPartial"></div>
+             </div>
+           </div>
+         </div>
+         <script>
+         function openlogin(){
+           window.open("/auth/google");
+         }
+         </script>
+   <script type="text/javascript" src="/public/42d7a822234bdb59c809-bundle.js"></script></body>
+</html>

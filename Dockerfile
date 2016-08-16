@@ -12,10 +12,13 @@ RUN apt-get update
 RUN mkdir -p /opt/flare
 WORKDIR /opt/flare
 
+COPY ./scripts/nodesetup.sh /opt/flare
+RUN ./nodesetup.sh && apt-get install -y nodejs
+
+COPY ./package.json /opt/flare
+RUN npm install
+
 COPY . /opt/flare
-RUN ls scripts && pwd
-RUN scripts/nodesetup.sh && apt-get install -y nodejs
-RUN cd /opt/flare && npm install
 
 EXPOSE 3333
 

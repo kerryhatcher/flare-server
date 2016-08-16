@@ -1,0 +1,13 @@
+db:
+  image: mongo
+web:
+  #image: 701223540795.dkr.ecr.us-east-1.amazonaws.com/vigilem:latest
+  #build: .
+  image: flare:latest
+  command: npm start
+  ports:
+    - "3333:3333"
+  links:
+    - db
+  environment:
+    PORT: 3333

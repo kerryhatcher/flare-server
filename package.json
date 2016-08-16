@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "flare",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,19 @@
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
+    "ejs": "^2.5.1",
     "express": "~4.13.4",
+    "express-session": "^1.14.0",
+    "forever": "^0.15.2",
     "jade": "~1.11.0",
+    "mongoose": "^4.5.8",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "passport": "^0.3.2",
+    "passport-google-oauth": "^1.0.0",
+    "serve-favicon": "~2.3.0",
+    "twilio": "^2.9.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.0"
   }
 }
