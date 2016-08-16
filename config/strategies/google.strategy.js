@@ -5,8 +5,8 @@ var passport = require('passport'),
 
 module.exports = function () {
     passport.use(new GoogleStrategy({
-            clientID: '82323686191-vnfcv2iv9m0af6sivbuvrc0egd0kekq3.apps.googleusercontent.com',
-            clientSecret: '4hSwQ8NdYnjA0SnVEdMmJo9e',
+            clientID: process.env.GOOGLE_OAUTH_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
             callbackURL: 'http://localhost:3000/auth/google/callback'
         },
 function (req, accessToken, refreshToken, profile, done) {

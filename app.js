@@ -14,10 +14,10 @@ var List = require('./model/list.model');
 
 //console.log(process.env);
 
-//console.log(process.env.DATABASE);
+// console.log(process.env.DATABASE);
 
 
-var db = mongoose.connect('mongodb://mongo-cluster.MongoDB/flare?replicaSet=rs0');
+var db = mongoose.connect('mongodb://database/flare?replicaSet=rs0');
 
 
 
