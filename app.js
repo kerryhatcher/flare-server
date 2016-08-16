@@ -11,9 +11,11 @@ var User = require('./model/user.model');
 var Message = require('./model/message.model');
 var List = require('./model/list.model');
 
-console.log(process.env);
+console.log(process.env.database);
 
-var db = mongoose.connect('mongodb://' + process.env.database + '/socialAggregation');
+
+var db = mongoose.connect('mongodb://' + process.env.database.MongoDB_mongo-cluster_1 + ',' + process.env.database.MongoDB_mongo-cluster_2 + ',' + process.env.database.MongoDB_mongo-cluster_3 + '/flare?replicaSet=rs0');
+
 
 
 
