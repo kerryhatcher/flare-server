@@ -1,13 +1,17 @@
 db:
   image: mongo
 web:
-  #image: 701223540795.dkr.ecr.us-east-1.amazonaws.com/vigilem:latest
+  image: flare:test
   #build: .
-  image: flare:latest
+  #image: flare:latest
   command: npm start
   ports:
     - "3333:3333"
   links:
     - db
   environment:
+    NODE_ENV: dev
     PORT: 3333
+    GOOGLE_OAUTH_CLIENT_SECRET: G-9M91dWHRIiXYDNMWGreFSS
+    GOOGLE_OAUTH_CLIENT_ID: 82323686191-676iudodh0a73403c8d16ntm7jin153q.apps.googleusercontent.com
+    GOOGLE_OAUTH_CALLBACK: http://localhost:3333/auth/google/callback

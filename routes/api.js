@@ -13,7 +13,7 @@ router.route('/')
 router.route('/user')
   .get(function(req, res, next) {
 
-    res.send({ message: req.user })
+    res.send(req.user)
 
   })
   .post(function(req, res, next) {
@@ -30,8 +30,6 @@ router.route('/message')
   })
   .post(function(req, res, next) {
 
-    console.log(req.body);
-
     message.create(req, res, next, req.body.title, req.body.title, req.body.content)
 
     var accountSid = 'AC7fa6a65966982d4d186f42f7cff88832'; // Your Account SID from www.twilio.com/console
@@ -40,6 +38,8 @@ router.route('/message')
     var client = require('twilio')(accountSid, authToken);
 
     //console.log(client);
+
+    /**
 
     client.sendMessage({
       body: req.body.content,
@@ -60,7 +60,7 @@ router.route('/message')
     //executed when the call has been initiated.
     console.log(responseData.from); // outputs "+14506667788"
 
-});
+}); **/
 
 
   });

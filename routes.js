@@ -4,9 +4,9 @@ var router = express.Router();
 
 module.exports = function(app, passport) {
 
-  
 
-  app.use('/api', denyNotLoggedIn, require('./api'));
+
+  app.use('/api', denyNotLoggedIn, require('./routes/api'));
 /**
   app.all('*', function(req, res, next) {
   //console.log(req.isAuthenticated())
@@ -18,7 +18,7 @@ module.exports = function(app, passport) {
 
 });**/
 
-  app.use('/public', express.static(path.join(__dirname, '../public')));
+  app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
   /* GET home page. */
@@ -26,7 +26,7 @@ module.exports = function(app, passport) {
     res.render('index', { title: 'Express' });
   });
 
-  app.use('/users', require('./users'));
+  app.use('/users', require('./routes/users'));
 
 
 
@@ -35,7 +35,7 @@ module.exports = function(app, passport) {
 
 
   app.get('/*', function(req, res, next) {
-      res.sendFile(path.join(__dirname, '../public/index.html'));
+      res.sendFile(path.join(__dirname, 'public/index.html'));
   });
 
   // catch 404 and forward to error handler

@@ -4,11 +4,10 @@ var passport = require('passport'),
     User = require('mongoose').model('User');
 
 module.exports = function () {
-    console.log(process.env.GOOGLE_OAUTH_CLIENT_ID, process.env.GOOGLE_OAUTH_CLIENT_SECRET )
     passport.use(new GoogleStrategy({
             clientID: process.env.GOOGLE_OAUTH_CLIENT_ID,
             clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
-            callbackURL: 'http://localhost:3000/auth/google/callback'
+            callbackURL: process.env.GOOGLE_OAUTH_CALLBACK
         },
 function (req, accessToken, refreshToken, profile, done) {
   // Set the provider data and include tokens
