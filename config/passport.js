@@ -9,8 +9,15 @@ module.exports = function() {
     });
 
     passport.deserializeUser(function(user, done) {
+        console.log(user);
         done(null, user);
     });
+/*
+    passport.deserializeUser(function(user, done) {
+        User.findbyId(id, function (err, user) {
+            done(err, user);
+        });
+    });*/
 
     require('./strategies/google.strategy')();
 };

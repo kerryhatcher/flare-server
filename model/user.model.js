@@ -30,6 +30,9 @@ var UserSchema = new Schema({
 		type: String,
 		required: 'Provider is required'
 	},
+	paymentinfo: {
+		type: String,
+	},
 	providerData: {},
 	additionalProvidersData: {},
 	messagesSent : [{ type: Schema.Types.ObjectId, ref: 'Message' }],

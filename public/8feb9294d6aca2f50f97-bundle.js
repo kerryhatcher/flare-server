@@ -80097,9 +80097,11 @@
 	
 	  //console.log('meep');
 	
-	  User.UserService = __webpack_require__(136)(User._module);
+	  User.UserService = __webpack_require__(137)(User._module);
 	
-	  User.AuthService = __webpack_require__(137)(User._module);
+	  User.AuthService = __webpack_require__(138)(User._module);
+	
+	  User.AccountPageController = __webpack_require__(139)(User);
 	
 	  User.PageController = User._module.controller('User.PageController', ['$scope', '$http', function ($scope, $http) {
 	    var vm = this;
@@ -81394,6 +81396,7 @@
 	    var signupTemplateUrl = __webpack_require__(133);
 	    var templateUrl = __webpack_require__(134);
 	    var loginTemplateUrl = __webpack_require__(135);
+	    var accountTemplateUrl = __webpack_require__(136);
 	
 	    parentModule._module.config(['$routeProvider', 'HawtioNavBuilderProvider', '$locationProvider', function ($routeProvider, builder, $locationProvider) {
 	        $locationProvider.html5Mode(true);
@@ -81405,7 +81408,7 @@
 	            return 'Profile';
 	        }).href(function () {
 	            return '/Flares/user';
-	        }).subPath('Profile', 'profile', templateUrl).build();
+	        }).subPath('Profile', 'profile', templateUrl).subPath('Account', 'account', accountTemplateUrl).build();
 	        builder.configureRouting($routeProvider, parentModule.tab);
 	        var interceptor = ['$rootScope', '$q', "Base64", function (scope, $q, Base64) {
 	            function success(response) {
@@ -81444,7 +81447,7 @@
 /***/ function(module, exports) {
 
 	var path = '/home/khatcher/Projects/flare/client/user/html/user.html';
-	var html = "\n<div ng-controller=\"User.PageController as UsersCrtl\">\n  <h1>{{currentUser.displayName}}</h1>\n\n</div>\n";
+	var html = "\n<div ng-controller=\"User.PageController as UsersCrtl\">\n  <h1>{{currentUser.displayName}}</h1>\n\n  <div><img src=\"{{currentUser.avatarUrl}}\" /></div>\n\n</div>\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -81459,6 +81462,15 @@
 
 /***/ },
 /* 136 */
+/***/ function(module, exports) {
+
+	var path = '/home/khatcher/Projects/flare/client/user/html/account.html';
+	var html = "<div ng-controller=\"User.AccountPageController as UsersCrtl\">\n\n    <h1>{{UsersCrtl.title}}</h1>\n\n\n    <form action=\"/auth/account/load\" method=\"POST\">\n        <script\n                src=\"https://checkout.stripe.com/checkout.js\" class=\"stripe-button\"\n                data-key=\"pk_test_ONtmmyhoBZIA71w5fGYZ1ib2\"\n                data-amount=\"500\"\n                data-name=\"Demo Site\"\n                data-description=\"Widget\"\n                data-zip-code=\"true\"\n                data-image=\"/img/documentation/checkout/marketplace.png\"\n                data-locale=\"auto\">\n        </script>\n    </form>\n</div>\n";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 137 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -81476,10 +81488,14 @@
 	    parentModule.factory('Session', function ($resource) {
 	        return $resource('/auth/session/');
 	    });
+	
+	    parentModule.factory('Account', function ($resource) {
+	        return $resource('/auth/account/');
+	    });
 	};
 
 /***/ },
-/* 137 */
+/* 138 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -81566,6 +81582,30 @@
 	  });
 	};
 
+/***/ },
+/* 139 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	module.exports = function (parentModule) {
+	
+	    parentModule._module.controller('User.AccountPageController', ['$scope', '$http', 'Account', function ($scope, $http, Account) {
+	        var vm = this;
+	        var title = "Users";
+	        var accountinfo = Account.get(function (accountinfo) {
+	            console.log(accountinfo);
+	        });
+	        console.log('hello');
+	        console.log(Account);
+	
+	        angular.extend(this, {
+	            title: title,
+	            accountinfo: accountinfo
+	        });
+	    }]);
+	};
+
 /***/ }
 /******/ ]);
-//# sourceMappingURL=582685f34099c994a51a-bundle.js.map
+//# sourceMappingURL=8feb9294d6aca2f50f97-bundle.js.map
