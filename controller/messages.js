@@ -1,4 +1,4 @@
-var Message = require('../model/message.model')
+var Message = require('../model/message.model');
 
 var get = function(req, res, next, shortTitle){
 
@@ -15,14 +15,14 @@ Message
 
 
 
-}
+};
 
 var create = function(req, res, next, shortTitle, longTitle, content) {
 
   var newmessage = new Message({ shortTitle: shortTitle, longTitle: longTitle, content: content });
   newmessage.save();
   res.send({message: "saved"});
-}
+};
 
 var getall = function(req, res, next, shortTitle) {
 
@@ -36,10 +36,10 @@ var getall = function(req, res, next, shortTitle) {
     res.send(message);
     // prints "The creator is Aaron"
   });
-}
+};
 
 module.exports = {
   get,
   create,
   getall
-}
+};

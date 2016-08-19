@@ -29,14 +29,9 @@ var app = express();
 
 
 
-if (app.get('env') === 'doc') {
-  console.log(process.env);
-  var db = mongoose.connect('mongodb://db/flare');
-} else if (app.get('env') === 'production') {
-  var db = mongoose.connect('mongodb://mongo-cluster.MongoDB/flare?replicaSet=rs0');
-} else if (app.get('env') === 'development') {
-  var db = mongoose.connect('mongodb://' + process.env.FLARE_DB);
-}
+
+mongoose.connect('mongodb://' + process.env.FLARE_DB);
+
 
 
 

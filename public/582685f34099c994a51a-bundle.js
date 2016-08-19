@@ -80065,8 +80065,7 @@
 	
 	var _adminjsCore = __webpack_require__(72);
 	
-	var templateUrl = __webpack_require__(128);
-	var loginTemplateUrl = __webpack_require__(129);
+	;
 	
 	var User;
 	(function (User) {
@@ -80081,59 +80080,26 @@
 	  User.pluginName = 'UserPlugin';
 	  User.templatePath = '';
 	
-	  User._module = angular.module(User.pluginName, ['http-auth-interceptor', __webpack_require__(130), __webpack_require__(132)]);
+	  User._module = angular.module(User.pluginName, ['http-auth-interceptor', __webpack_require__(128), __webpack_require__(130)]);
 	
-	  var tab = undefined;
+	  User.tab = undefined;
 	
-	  User._module.config(['$routeProvider', 'HawtioNavBuilderProvider', '$locationProvider', function ($routeProvider, builder, $locationProvider) {
-	    $locationProvider.html5Mode(true);
-	    $routeProvider.when('/', {
-	      templateUrl: loginTemplateUrl,
-	      controller: User.loginPageController
-	    });
-	    tab = builder.create().id(User.pluginName).title(function () {
-	      return 'Profile';
-	    }).href(function () {
-	      return '/Flares/user';
-	    }).subPath('Profile', 'profile', templateUrl).build();
-	    builder.configureRouting($routeProvider, tab);
-	    var interceptor = ['$rootScope', '$q', "Base64", function (scope, $q, Base64) {
-	      function success(response) {
-	        return response;
-	      }
-	
-	      function error(response) {
-	        var status = response.status;
-	        if (status == 401) {
-	          //AuthFactory.clearUser();
-	          //console.log("got 401------------------------------");
-	          //window.location = "/account/login?redirectUrl=" + Base64.encode(document.URL);
-	          return;
-	        }
-	        // otherwise
-	        return $q.reject(response);
-	      }
-	      return function (promise) {
-	        return promise.then(success, error);
-	      };
-	    }];
-	  }]);
+	  // import Routes
+	  __webpack_require__(132)(User);
 	
 	  User._module.run(['HawtioNav', '$rootScope', '$location', function (HawtioNav, $rootScope, $location) {
 	    // On catching 401 errors, redirect to the login page.
 	
 	
 	    //  $rootScope.$on('event:auth-loginRequired', openLoginForm);
-	    HawtioNav.add(tab);
+	    HawtioNav.add(User.tab);
 	  }]);
 	
 	  //console.log('meep');
 	
-	  User.UserService = __webpack_require__(134)(User._module);
+	  User.UserService = __webpack_require__(136)(User._module);
 	
-	  User.SessionService = __webpack_require__(135)(User._module);
-	
-	  User.AuthService = __webpack_require__(136)(User._module);
+	  User.AuthService = __webpack_require__(137)(User._module);
 	
 	  User.PageController = User._module.controller('User.PageController', ['$scope', '$http', function ($scope, $http) {
 	    var vm = this;
@@ -80206,32 +80172,14 @@
 
 /***/ },
 /* 128 */
-/***/ function(module, exports) {
-
-	var path = '/home/khatcher/Projects/flare/client/user/user.html';
-	var html = "\n<div ng-controller=\"User.PageController as UsersCrtl\">\n  <h1>{{currentUser.displayName}}</h1>\n\n</div>\n";
-	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
-	module.exports = path;
-
-/***/ },
-/* 129 */
-/***/ function(module, exports) {
-
-	var path = '/home/khatcher/Projects/flare/client/user/login.html';
-	var html = "\n<div ng-controller=\"User.LoginPageController as UsersCrtl\">\n\n</div>\n";
-	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
-	module.exports = path;
-
-/***/ },
-/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(131);
+	__webpack_require__(129);
 	module.exports = 'ngCookies';
 
 
 /***/ },
-/* 131 */
+/* 129 */
 /***/ function(module, exports) {
 
 	/**
@@ -80559,15 +80507,15 @@
 
 
 /***/ },
-/* 132 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(133);
+	__webpack_require__(131);
 	module.exports = 'ngResource';
 
 
 /***/ },
-/* 133 */
+/* 131 */
 /***/ function(module, exports) {
 
 	/**
@@ -81436,29 +81384,94 @@
 
 
 /***/ },
-/* 134 */
-/***/ function(module, exports) {
+/* 132 */
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	module.exports = function (parentModule) {
 	
-	  parentModule.factory('User', function ($resource) {
-	    return $resource('/auth/users/:id/', {}, {
-	      'update': {
-	        method: 'PUT'
-	      }
-	    });
-	  });
+	    var signupTemplateUrl = __webpack_require__(133);
+	    var templateUrl = __webpack_require__(134);
+	    var loginTemplateUrl = __webpack_require__(135);
+	
+	    parentModule._module.config(['$routeProvider', 'HawtioNavBuilderProvider', '$locationProvider', function ($routeProvider, builder, $locationProvider) {
+	        $locationProvider.html5Mode(true);
+	        $routeProvider.when('/', {
+	            templateUrl: loginTemplateUrl,
+	            controller: parentModule.loginPageController
+	        });
+	        parentModule.tab = builder.create().id(parentModule.pluginName).title(function () {
+	            return 'Profile';
+	        }).href(function () {
+	            return '/Flares/user';
+	        }).subPath('Profile', 'profile', templateUrl).build();
+	        builder.configureRouting($routeProvider, parentModule.tab);
+	        var interceptor = ['$rootScope', '$q', "Base64", function (scope, $q, Base64) {
+	            function success(response) {
+	                return response;
+	            }
+	
+	            function error(response) {
+	                var status = response.status;
+	                if (status == 401) {
+	                    //AuthFactory.clearUser();
+	                    //console.log("got 401------------------------------");
+	                    //window.location = "/account/login?redirectUrl=" + Base64.encode(document.URL);
+	                    return;
+	                }
+	                // otherwise
+	                return $q.reject(response);
+	            }
+	            return function (promise) {
+	                return promise.then(success, error);
+	            };
+	        }];
+	    }]);
 	};
+
+/***/ },
+/* 133 */
+/***/ function(module, exports) {
+
+	var path = '/home/khatcher/Projects/flare/client/user/html/signup.html';
+	var html = "<div ng-controller=\"User.LoginPageController as UsersCrtl\">\n\n</div>\n";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 134 */
+/***/ function(module, exports) {
+
+	var path = '/home/khatcher/Projects/flare/client/user/html/user.html';
+	var html = "\n<div ng-controller=\"User.PageController as UsersCrtl\">\n  <h1>{{currentUser.displayName}}</h1>\n\n</div>\n";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
 
 /***/ },
 /* 135 */
 /***/ function(module, exports) {
 
+	var path = '/home/khatcher/Projects/flare/client/user/html/login.html';
+	var html = "\n<div ng-controller=\"User.LoginPageController as UsersCrtl\">\n\n</div>\n";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 136 */
+/***/ function(module, exports) {
+
 	'use strict';
 	
 	module.exports = function (parentModule) {
+	
+	    parentModule.factory('User', function ($resource) {
+	        return $resource('/auth/users/:id/', {}, {
+	            'update': {
+	                method: 'PUT'
+	            }
+	        });
+	    });
 	
 	    parentModule.factory('Session', function ($resource) {
 	        return $resource('/auth/session/');
@@ -81466,7 +81479,7 @@
 	};
 
 /***/ },
-/* 136 */
+/* 137 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -81555,4 +81568,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=881609b0dcbf2873da77-bundle.js.map
+//# sourceMappingURL=582685f34099c994a51a-bundle.js.map
