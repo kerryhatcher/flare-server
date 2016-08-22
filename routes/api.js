@@ -1,10 +1,10 @@
 var express = require('express');
 var passport = require('passport');
-var message = require('../controller/messages')
+var message = require('../controller/messages');
 var router = express.Router();
 
 
-
+/**
 
 router.route('/')
   .get(function(req, res, next) {
@@ -41,7 +41,7 @@ router.route('/message')
 
     //console.log(client);
 
-    /**
+
 
     client.sendMessage({
       body: req.body.content,
@@ -62,7 +62,7 @@ router.route('/message')
     //executed when the call has been initiated.
     console.log(responseData.from); // outputs "+14506667788"
 
-}); **/
+});
 
 
   });
@@ -79,7 +79,7 @@ router.route('/message')
 
     });
 
-
+     **/
 
 
 module.exports = router;

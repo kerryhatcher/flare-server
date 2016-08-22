@@ -1,4 +1,4 @@
-var Message = require('../model/message.model');
+var Message = require('../modules/message/message.model.js');
 
 var get = function(req, res, next, shortTitle){
 

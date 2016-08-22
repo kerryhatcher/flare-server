@@ -9,7 +9,8 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var session = require('express-session');
 const mongoose = require('mongoose');
-var User = require('./model/user.model');
+var User = require('./modules/user/user.model.js');
+
 
 const MongoStore = require('connect-mongo')(session);
 
@@ -43,8 +44,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/auth', require('./auth/routes')(app));
+//Module Routes
+
+const AuthTools = require('./modules/auth/auth.tools');
+
+app.use('/auth', require('./modules/auth/routes')(app));
 app.use('/lists', require('./modules/lists/lists.routes')(app));
+app.use('/message', require('./modules/message/message.routes')(app));
+app.use('/user',  require('./modules/user/user.routes')(app));
 
 require('./config/passport')();
 require('./routes')(app, passport, express);
