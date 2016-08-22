@@ -61686,7 +61686,7 @@
 /* 90 */
 /***/ function(module, exports) {
 
-	var path = '/home/khatcher/Projects/flare/client/flare/index.html';
+	var path = '/home/kwhatcher/Projects/flare/client/flare/index.html';
 	var html = "<div ng-controller=\"Flare.IndexPageController as FlaresCrtl\">\n  <h1>{{FlaresCrtl.title}}</h1>\n  <div>{{FlaresCrtl.messages.message.displayName}}</div>\n  <ul>\n    <li ng-repeat=\"message in FlaresCrtl.data\">{{message.longTitle}} - {{message.content}}</li>\n  </ul>\n</div>\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
@@ -61695,7 +61695,7 @@
 /* 91 */
 /***/ function(module, exports) {
 
-	var path = '/home/khatcher/Projects/flare/client/flare/flare.html';
+	var path = '/home/kwhatcher/Projects/flare/client/flare/flare.html';
 	var html = "<a data-original-title=\"Broadcast Message\" href=\"#\" type=\"button\" class=\"btn btn-lg btn-primary\" data-toggle=\"modal\" data-target=\"#flareModal\">\n<span class=\"glyphicon glyphicon-envelope\"> Broadcast Message </span>\n</a>\n\n<div ng-controller=\"Flare.CreateController as CreateFlaresCrtl\">\n\n\n\n            <!-- Modal -->\n            <div class=\"modal fade\" id=\"flareModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"flareModalLabel\">\n              <div class=\"modal-dialog\" role=\"document\">\n                <div class=\"modal-content\">\n                  <div class=\"modal-header\">\n                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n                    <h4 class=\"modal-title\" id=\"myModalLabel\">{{CreateFlaresCrtl.test}}</h4>\n                  </div>\n                  <div class=\"modal-body\">\n                        <form>\n                        <div class=\"form-group\">\n                          <label for=\"title\">Subject</label>\n                          <input ng-model=\"CreateFlaresCrtl.newmsg.title\" type=\"text\" class=\"form-control\" id=\"title\" placeholder=\"title\">\n                        </div>\n                        <div class=\"form-group\">\n                          <label for=\"message\">Message</label>\n                          <input ng-model=\"CreateFlaresCrtl.newmsg.content\" type=\"textbox\" class=\"form-control\" id=\"message\" placeholder=\"message\">\n                        </div>\n                        <button ng-click=\"CreateFlaresCrtl.saveflare()\" type=\"submit\" class=\"btn btn-danger\" data-dismiss=\"modal\">Fire</button>\n                      </form>\n                  </div>\n                  </div>\n                  <div class=\"modal-footer\">\n                  </div>\n                </div>\n              </div>\n            </div>\n\n\n\n\n\n\n\n<div ng-controller=\"Flare.PageController as FlaresCrtl\">\n  <h1>{{FlaresCrtl.title}}</h1>\n  <div>{{FlaresCrtl.messages.message.displayName}}</div>\n  <ul>\n    <li ng-repeat=\"message in FlaresCrtl.data\">{{message.longTitle}} - {{message.content}}</li>\n  </ul>\n</div>\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
@@ -80097,11 +80097,11 @@
 	
 	  //console.log('meep');
 	
-	  User.UserService = __webpack_require__(137)(User._module);
+	  User.UserService = __webpack_require__(138)(User._module);
 	
-	  User.AuthService = __webpack_require__(138)(User._module);
+	  User.AuthService = __webpack_require__(139)(User._module);
 	
-	  User.AccountPageController = __webpack_require__(139)(User);
+	  __webpack_require__(140)(User);
 	
 	  User.PageController = User._module.controller('User.PageController', ['$scope', '$http', function ($scope, $http) {
 	    var vm = this;
@@ -81397,6 +81397,7 @@
 	    var templateUrl = __webpack_require__(134);
 	    var loginTemplateUrl = __webpack_require__(135);
 	    var accountTemplateUrl = __webpack_require__(136);
+	    var listsTemplateUrl = __webpack_require__(137);
 	
 	    parentModule._module.config(['$routeProvider', 'HawtioNavBuilderProvider', '$locationProvider', function ($routeProvider, builder, $locationProvider) {
 	        $locationProvider.html5Mode(true);
@@ -81408,7 +81409,7 @@
 	            return 'Profile';
 	        }).href(function () {
 	            return '/Flares/user';
-	        }).subPath('Profile', 'profile', templateUrl).subPath('Account', 'account', accountTemplateUrl).build();
+	        }).subPath('Profile', 'profile', templateUrl).subPath('Account', 'account', accountTemplateUrl).subPath('Lists', 'lists', listsTemplateUrl).build();
 	        builder.configureRouting($routeProvider, parentModule.tab);
 	        var interceptor = ['$rootScope', '$q', "Base64", function (scope, $q, Base64) {
 	            function success(response) {
@@ -81437,7 +81438,7 @@
 /* 133 */
 /***/ function(module, exports) {
 
-	var path = '/home/khatcher/Projects/flare/client/user/html/signup.html';
+	var path = '/home/kwhatcher/Projects/flare/client/user/html/signup.html';
 	var html = "<div ng-controller=\"User.LoginPageController as UsersCrtl\">\n\n</div>\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
@@ -81446,7 +81447,7 @@
 /* 134 */
 /***/ function(module, exports) {
 
-	var path = '/home/khatcher/Projects/flare/client/user/html/user.html';
+	var path = '/home/kwhatcher/Projects/flare/client/user/html/user.html';
 	var html = "\n<div ng-controller=\"User.PageController as UsersCrtl\">\n  <h1>{{currentUser.displayName}}</h1>\n\n  <div><img src=\"{{currentUser.avatarUrl}}\" /></div>\n\n</div>\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
@@ -81455,7 +81456,7 @@
 /* 135 */
 /***/ function(module, exports) {
 
-	var path = '/home/khatcher/Projects/flare/client/user/html/login.html';
+	var path = '/home/kwhatcher/Projects/flare/client/user/html/login.html';
 	var html = "\n<div ng-controller=\"User.LoginPageController as UsersCrtl\">\n\n</div>\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
@@ -81464,13 +81465,22 @@
 /* 136 */
 /***/ function(module, exports) {
 
-	var path = '/home/khatcher/Projects/flare/client/user/html/account.html';
+	var path = '/home/kwhatcher/Projects/flare/client/user/html/account.html';
 	var html = "<div ng-controller=\"User.AccountPageController as UsersCrtl\">\n\n    <h1>{{UsersCrtl.title}}</h1>\n\n\n    <form action=\"/auth/account/load\" method=\"POST\">\n        <script\n                src=\"https://checkout.stripe.com/checkout.js\" class=\"stripe-button\"\n                data-key=\"pk_test_ONtmmyhoBZIA71w5fGYZ1ib2\"\n                data-amount=\"500\"\n                data-name=\"Demo Site\"\n                data-description=\"Widget\"\n                data-zip-code=\"true\"\n                data-image=\"/img/documentation/checkout/marketplace.png\"\n                data-locale=\"auto\">\n        </script>\n    </form>\n</div>\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
 /***/ },
 /* 137 */
+/***/ function(module, exports) {
+
+	var path = '/home/kwhatcher/Projects/flare/client/user/html/lists.html';
+	var html = "<div ng-controller=\"User.ListPageController as UsersCrtl\">\n\n    <h1>{{UsersCrtl.title}}</h1>\n\n\n</div>\n";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 138 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -81495,7 +81505,7 @@
 	};
 
 /***/ },
-/* 138 */
+/* 139 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -81583,14 +81593,14 @@
 	};
 
 /***/ },
-/* 139 */
+/* 140 */
 /***/ function(module, exports) {
 
 	'use strict';
 	
 	module.exports = function (parentModule) {
 	
-	    parentModule._module.controller('User.AccountPageController', ['$scope', '$http', 'Account', function ($scope, $http, Account) {
+	    parentModule.AccountPageController = parentModule._module.controller('User.AccountPageController', ['$scope', '$http', 'Account', function ($scope, $http, Account) {
 	        var vm = this;
 	        var title = "Users";
 	        var accountinfo = Account.get(function (accountinfo) {
@@ -81604,8 +81614,19 @@
 	            accountinfo: accountinfo
 	        });
 	    }]);
+	
+	    parentModule._module.controller('User.ListPageController', ['$scope', '$http', function ($scope, $http) {
+	        var vm = this;
+	        var title = "Lists";
+	
+	        console.log('hello');
+	
+	        angular.extend(this, {
+	            title: title
+	        });
+	    }]);
 	};
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=8feb9294d6aca2f50f97-bundle.js.map
+//# sourceMappingURL=72f723f704b796c1f576-bundle.js.map

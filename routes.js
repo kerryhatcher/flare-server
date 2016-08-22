@@ -5,6 +5,8 @@ var router = express.Router();
 module.exports = function(app, passport) {
 
 
+  app.use('/api/lists', denyNotLoggedIn, require('./modules/lists/lists.routes'));
+
 
   app.use('/api', denyNotLoggedIn, require('./routes/api'));
 /**

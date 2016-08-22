@@ -4,10 +4,12 @@ var message = require('../controller/messages')
 var router = express.Router();
 
 
+
+
 router.route('/')
   .get(function(req, res, next) {
 
-  res.send(message.get())
+  res.send({message: "hello"})
   });
 
 router.route('/user')

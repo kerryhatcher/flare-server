@@ -8,7 +8,6 @@ Message
 .exec(function (err, message) {
   if (err) return handleError(err);
   //console.log('The creator is %s', message._author.name);
-  console.log(message);
   res.send({ message: message });
   // prints "The creator is Aaron"
 });
@@ -32,7 +31,6 @@ var getall = function(req, res, next, shortTitle) {
   .exec(function (err, message) {
     if (err) return handleError(err);
     //console.log('The creator is %s', message._author.name);
-    console.log(message);
     res.send(message);
     // prints "The creator is Aaron"
   });
